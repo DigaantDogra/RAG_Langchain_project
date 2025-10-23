@@ -1,1 +1,1 @@
-# RAG_Langchain_project
+# RAG Langchain Project
