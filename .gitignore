@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Python
 __pycache__/
 *.py[cod]
@@ -151,8 +150,3 @@ site/
 *.orig
 *.rej
 
-=======
-chroma_db/
-.env
-venv/
->>>>>>> 998b918 (added git ingore)

@@ -9,12 +9,12 @@ DATA_PATH = "Md_Files"
 CHROMA_DB_PATH = "chroma_db"
 
 # Generate the vector database
-def genetate_store(documents):
-    documents = load_documents(DATA_PATH)
-    text_splitter = split_documents(documents)
+def genetate_store():
+    documents = load_documents()
+    text_chunks = split_documents(documents)
     save_to_chroma(text_chunks)
 
-def split_text(documents):
+def split_documents(documents):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200,length_function=len, add_start_index=True)
     text_chunks = text_splitter.split_documents(documents)
     print(f"Split {len(documents)} documents into {len(text_chunks)} chunks")
@@ -38,3 +38,6 @@ def save_to_chroma(text_chunks):
     vectorstore.persist()
 
     print(f"saved {len(text_chunks)} chunks to {CHROMA_DB_PATH}")
+
+#generate the vector database
+genetate_store()
