@@ -34,4 +34,26 @@ def run_database(query):
     
     format_context(results, query)
 
+def format_context(results, query):
+    # Formatting the context text from search results
+    context_text = "\n\n---\n\n".join([doc.page_content for doc in results])
+    
+    # Creating the prompt using the template
+    prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
+    prompt = prompt_template.format_messages(context=context_text, question=query)
+    model_response(prompt)
+    
+def model_response(prompt):
+    
+    # Initialize the ChatOllama model with gemma3:12b
+    model = ChatOllama(model="gemma3:12b")
+    response = model.invoke(prompt)
+    response_text = response.content
 
+    # Extract sources from results
+    sources = [doc.metadata.get("source", None) for doc in results]
+    formatted_response = f"Response: {response_text}\nSources: {sources}"
+    print(formatted_response)
+
+
+run_query()
