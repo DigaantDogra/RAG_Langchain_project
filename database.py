@@ -4,9 +4,14 @@ from langchain_ollama import OllamaEmbeddings
 import os
 import shutil
 from langchain_community.vectorstores import Chroma
+from dotenv import load_dotenv
 
-DATA_PATH = "Md_Files"
-CHROMA_DB_PATH = "chroma_db"
+# Load environment variables from .env file
+load_dotenv()
+
+# Get paths from environment variables
+DATA_PATH = os.getenv("DATA_PATH")
+CHROMA_DB_PATH = os.getenv("CHROMA_DB_PATH")
 
 # Generate the vector database
 def genetate_store():
