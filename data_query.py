@@ -20,4 +20,18 @@ def run_query():
     query = args.query
 
     run_database(query)
+
+def run_database(query):
+    # Load the vector database
+    embeddings = OllamaEmbeddings(model="nomic-embed-text")
+    db = Chroma(embedding_function=embeddings, persist_directory=CHROMA_DB_PATH)
+
+    #search the database for similarities
+    results = db.similarity_search(query, k=4)
+    if not results:
+        print("Unable to answer the question. Please try again with a more detailed question.")
+        return None
     
+    format_context(results, query)
+
+
