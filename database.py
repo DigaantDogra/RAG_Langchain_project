@@ -38,5 +38,3 @@ def save_to_chroma(text_chunks):
     vectorstore.persist()
 
     print(f"saved {len(text_chunks)} chunks to {CHROMA_DB_PATH}")
-# Call the function to create the vector database
-save_to_chroma(text_chunks)
