@@ -41,9 +41,9 @@ def format_context(results, query):
     # Creating the prompt using the template
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format_messages(context=context_text, question=query)
-    model_response(prompt)
+    model_response(prompt, results)
     
-def model_response(prompt):
+def model_response(prompt, results):
     
     # Initialize the ChatOllama model with gemma3:12b
     model = ChatOllama(model="gemma3:12b")
